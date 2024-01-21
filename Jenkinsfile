@@ -1,19 +1,19 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = 'yourusername/your-static-site:latest'
+        CONTAINER_NAME = 'your-container-name'
+        PORT_MAPPING = '8081:80'  // Adjust the port mapping as needed
+    }
+
     stages {
         stage('Checkout') {
             steps {
+                // Clean workspace before checkout
+                deleteDir()
                 // Checkout the HTML source code from GitHub
-                git 'https://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@github.com/andrinahaura/project1.git'
-            }
-        }
-
-        stage('Build HTML') {
-            steps {
-                // Your build steps for HTML, e.g., using a static site generator
-                // Example: Assuming you have an index.html in the root
-                sh 'ls -l'  // Add your build commands here
+                git url: 'https://github.com/andrinahaura/project1.git'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image with the HTML content
-                    docker.build('ola', '.')
+                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Run Docker container based on the built image
-                    docker.run('-p 8089:89 --name ola')
+                    docker.image("${DOCKER_IMAGE}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
                 }
             }
         }
@@ -40,8 +40,8 @@ pipeline {
         always {
             script {
                 // Stop and remove the Docker container after execution
-                docker.image('ola').stop()
-                docker.image('ola').remove()
+                docker.image("${DOCKER_IMAGE}").stop()
+                docker.image("${DOCKER_IMAGE}").remove()
             }
         }
     }
