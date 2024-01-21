@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'yourusername/your-static-site:latest'
         CONTAINER_NAME = 'your-container-name'
-        PORT_MAPPING = '8081:80'  // Adjust the port mapping as needed
+        PORT_MAPPING = '8089:89'  // Adjust the port mapping as needed
     }
 
     stages {
