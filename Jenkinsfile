@@ -22,11 +22,22 @@ pipeline {
                 }
             }
 
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             // Build Docker image with the HTML content
+        //             docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+        //         }
+        //     }
+        // }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image with the HTML content
-                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+                    echo "Current directory: ${PWD()}"
+                    sh 'ls -l'
+                    // Build Docker image using the provided Dockerfile and context
+                    docker.build(DOCKER_IMAGE, '-f path/to/Dockerfile .')
                 }
             }
         }
