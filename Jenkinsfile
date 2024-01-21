@@ -8,14 +8,19 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Clean workspace before checkout
-                deleteDir()
-                // Checkout the HTML source code from GitHub
-                git url: 'https://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@github.com/andrinahaura/project1.git'
+        // stage('Checkout') {
+        //     steps {
+        //         // Clean workspace before checkout
+        //         deleteDir()
+        //         // Checkout the HTML source code from GitHub
+        //         git url: 'https://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@github.com/andrinahaura/project1.git'
+        //     }
+        // }
+            stage('Checkout') {
+                steps {
+                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/andrinahaura/project1.git']]])
+                }
             }
-        }
 
         stage('Build Docker Image') {
             steps {
