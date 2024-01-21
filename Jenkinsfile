@@ -4,29 +4,29 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'yourusername/your-static-site:latest'
         CONTAINER_NAME = 'your-container-name'
-        PORT_MAPPING = '8089:89'  // Adjust the port mapping as needed
+        PORT_MAPPING = '8080:80'  // Adjust the port mapping as needed
     }
 
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         // Clean workspace before checkout
-        //         deleteDir()
-        //         // Checkout the HTML source code from GitHub
-        //         git url: 'https://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@github.com/andrinahaura/project1.git'
-        //     }
-        // }
-            stage('Checkout') {
-                steps {
-                    deleteDir()
-                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/andrinahaura/project1.git']]])
-                }
+        stage('Checkout') {
+            steps {
+                // Clean workspace before checkout
+                deleteDir()
+                // Checkout the HTML source code from GitHub
+                git url: 'https://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@github.com/andrinahaura/project1.git'
             }
+        }
+            // stage('Checkout') {
+            //     steps {
+            //         deleteDir()
+            //         checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/andrinahaura/project1.git']]])
+            //     }
+            // }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    dir('project2') {
+                    dir('project1') {
                         // Build Docker image dengan konten HTML
                         docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
                     }
