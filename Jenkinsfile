@@ -37,7 +37,7 @@ pipeline {
                     echo "Current directory: ${PWD()}"
                     sh 'ls -l'
                     // Build Docker image using the provided Dockerfile and context
-                    docker.build(DOCKER_IMAGE, '-f path/to/Dockerfile .')
+                    docker.build("${DOCKER_IMAGE}", '-f path/to/Dockerfile .')
                 }
             }
         }
