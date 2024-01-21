@@ -13,7 +13,7 @@ pipeline {
                 // Clean workspace before checkout
                 deleteDir()
                 // Checkout the HTML source code from GitHub
-                git url: 'https://github.com/andrinahaura/project1.git'
+                git url: 'https://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@github.com/andrinahaura/project1.git'
             }
         }
 
