@@ -18,6 +18,7 @@ pipeline {
         // }
             stage('Checkout') {
                 steps {
+                    deleteDir()
                     checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/andrinahaura/project1.git']]])
                 }
             }
@@ -27,7 +28,7 @@ pipeline {
                 script {
                     dir('project2') {
                         // Build Docker image dengan konten HTML
-                        docker.build("${DOCKER_IMAGE}", '-f path/to/Dockerfile .')
+                        docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
                     }
                     // // Build Docker image with the HTML content
                     // docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
