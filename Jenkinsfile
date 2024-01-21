@@ -25,8 +25,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image with the HTML content
-                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+                    dir('project2') {
+                        // Build Docker image dengan konten HTML
+                        docker.build("${DOCKER_IMAGE}", '-f path/to/Dockerfile .')
+                    }
+                    // // Build Docker image with the HTML content
+                    // docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
                 }
             }
         }
