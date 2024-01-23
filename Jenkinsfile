@@ -16,25 +16,25 @@ pipeline {
         //         git url: 'https://github.com/andrinahaura/project1.git'
         //     }
         // }
-            stage('Checkout') {
-                steps {
-                    deleteDir()
-                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/tasyasyf/cv.git']]])
-                }
-            }
+        //     stage('Checkout') {
+        //         steps {
+        //             deleteDir()
+        //             checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/tasyasyf/cv.git']]])
+        //         }
+        //     }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    dir('project1') {
-                        // Build Docker image dengan konten HTML
-                        docker.build("${DOCKER_IMAGE}", '-f  Dockerfile .')
-                    }
-                    // // Build Docker image with the HTML content
-                    // docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
-                }
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             dir('project1') {x
+        //                 // Build Docker image dengan konten HTML
+        //                 docker.build("${DOCKER_IMAGE}", '-f  Dockerfile .')
+        //             }
+        //             // // Build Docker image with the HTML content
+        //             // docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+        //         }
+        //     }
+        // }
 
     
         stage('Run sssDocker Container') {
