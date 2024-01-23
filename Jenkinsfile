@@ -19,7 +19,7 @@ pipeline {
             stage('Checkout') {
                 steps {
                     deleteDir()
-                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/andrinahaura/project1.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/tasyasyf/cv.git']]])
                 }
             }
 
