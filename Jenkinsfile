@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'andrinahaura/test2:latest'
+        DOCKER_IMAGE = 'web'
         CONTAINER_NAME = 'angry_moser'
-        PORT_MAPPING = '8089:89'  // Adjust the port mapping as needed
+        PORT_MAPPING = '8089:80'  // Adjust the port mapping as needed
     }
 
     stages {
