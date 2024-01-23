@@ -37,7 +37,7 @@ pipeline {
         }
 
     
-        stage('Run Docker Container') {
+        stage('Run sssDocker Container') {
             steps {
                 script {
                     // Run Docker container based on the built image
