@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        PATH = "/usr/local/bin:${env.PATH}"
         DOCKER_IMAGE = 'web'
         CONTAINER_NAME = 'angry_moser'
         PORT_MAPPING = '8089:80'  // Adjust the port mapping as needed
@@ -44,7 +45,7 @@ pipeline {
         //             }
         //         }
         //     }
-    
+
         stage('Run sssDocker Container') {
             steps {
                 script {
